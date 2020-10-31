@@ -5,5 +5,8 @@ from . import views
 app_name = 'food'
 
 urlpatterns = [
-    path('pizza', views.pizza, name='pizza')
+    path('inAndOut', views.inAndOut, name='inAndOut'),
+    path('littleCaesars', views.littleCaesars, name='littleCaesars'),
+    path('pandaExpress', views.pandaExpress, name='pandaExpress'),
+    path('tacoBell', views.tacoBell, name='tacoBell')
 ]

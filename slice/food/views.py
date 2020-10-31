@@ -4,7 +4,16 @@ from django.http import HttpResponse
 
 # Home Page View
 def index(request):
-    return HttpResponse('Hello World!')
+    return render(request, 'food/index.html')
 
-def pizza(request):
-    return HttpResponse("I am pizza")
+def inAndOut(request):
+    return render(request, 'food/inAndOut.html')
+
+def littleCaesars(request):
+    return render(request, 'food/littleCaesars.html')
+
+def pandaExpress(request):
+    return render(request, 'food/pandaExpress.html')
+
+def tacoBell(request):
+    return render(request, 'food/tacoBell.html')
