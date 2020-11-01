@@ -7,6 +7,6 @@ app_name = 'food'
 urlpatterns = [
     path('inAndOut', views.inAndOut, name='inAndOut'),
     path('littleCaesars', views.littleCaesars, name='littleCaesars'),
-    path('pandaExpress', views.pandaExpress, name='pandaExpress'),
+    path('kfc', views.kfc, name='kfc'),
     path('tacoBell', views.tacoBell, name='tacoBell')
 ]

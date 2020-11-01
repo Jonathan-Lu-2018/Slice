@@ -1,3 +1,16 @@
 .logo {
     margin-bottom: 10px;
 }
+
+.home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../img/home.jpeg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}

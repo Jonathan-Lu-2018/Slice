@@ -12,8 +12,8 @@ def inAndOut(request):
 def littleCaesars(request):
     return render(request, 'food/littleCaesars.html')
 
-def pandaExpress(request):
-    return render(request, 'food/pandaExpress.html')
+def kfc(request):
+    return render(request, 'food/kfc.html')
 
 def tacoBell(request):
     return render(request, 'food/tacoBell.html')
