@@ -5,18 +5,18 @@
 {% block content %}
     
     <div class="container-fluid">
-        <div class="row text-center">
+        <div class="row">
             <!--Menu-->
-            <div class="col-md-8">
-                <h2 class='title'> Welcome to Taco Bell! </h2>
+            <div class="col-md-8 text-center">
+                <h2 class="title"> Welcome to Taco Bell! </h2>
                 <div class="row">
                     {% for tacoBell in tacoBells %}
                     <div class="col-md-4 p-4">
                         <img class="picture" src="{{ tacoBell.tacoBellImage}}">
-                        <h4 class="pt-3">{{tacoBell.name}}</h4>
+                        <h4 class="pt-3" id="taco{{tacoBell.id}}">{{tacoBell.name}}</h4>
                         <div class="form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" checked>
+                                <input class="form-check-input" type="radio" name="tacoBell{{tacoBell.id}}" value="{{tacoBell.price}}" checked>
                                     ${{tacoBell.price}}
                             </label>
                         </div>
@@ -28,8 +28,10 @@
                 </div>
             </div>
             <!--Shopping Cart-->
-            <div class="col-md-4">
-
+            <div class="col-md-4 orders">
+                <h2 class="text-center">Order List</h2>
+                <ul></ul>
+                <h4 class="text-right">Total: $0</h4>
             </div>
         </div>
     </div>
