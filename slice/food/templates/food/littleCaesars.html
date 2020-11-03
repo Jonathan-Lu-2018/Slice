@@ -3,6 +3,35 @@
 {% block title %} Little Caesars {% endblock %}
 
 {% block content %}
-    <h1>Little Caesars is good!</h1>
-    <div></div>
+
+    <div class="container-fluid">
+        <div class="row text-center">
+            <!--Menu-->
+            <div class="col-md-8">
+                <h2 class='title'> Welcome to Little Caesars! </h2>
+                <div class="row">
+                    {% for littleCaesars in littleCaesarss %}
+                    <div class="col-md-6 p-4">
+                        <img class="picture" src="{{ littleCaesars.littleCaesarsImage}}">
+                        <h4 class="pt-3">{{littleCaesars.name}}</h4>
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" checked>
+                                    ${{littleCaesars.price}}
+                            </label>
+                        </div>
+                        <div>
+                            <button class="btn-info mt-3">Add to cart</button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!--Shopping Cart-->
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
