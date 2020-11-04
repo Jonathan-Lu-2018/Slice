@@ -8,5 +8,6 @@ urlpatterns = [
     path('inAndOut', views.inAndOut, name='inAndOut'),
     path('littleCaesars', views.littleCaesars, name='littleCaesars'),
     path('kfc', views.kfc, name='kfc'),
-    path('tacoBell', views.tacoBell, name='tacoBell')
+    path('tacoBell', views.tacoBell, name='tacoBell'),
+    path('order', views.order, name='order')
 ]

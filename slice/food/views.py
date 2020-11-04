@@ -27,3 +27,7 @@ def tacoBell(request):
     tacoBells = TacoBell.objects.all()
     ctx = {'tacoBells': tacoBells, 'active_link': 'tacoBell'}
     return render(request, 'food/tacoBell.html', ctx)
+
+def order(request):
+    ctx = {'active_link': 'order'}
+    return render(request, 'food/order.html', ctx)
