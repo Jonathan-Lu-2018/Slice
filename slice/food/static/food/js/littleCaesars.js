@@ -49,8 +49,14 @@ littleCaesarsShoppingCart();
 function removeLittleCaesars(n){
     var orders = JSON.parse(localStorage.getItem('orders'));
     var total = localStorage.getItem('total');
+
     total = Number(total) - Number(orders[n][1]);
     orders.splice(n,1);
+
+    // Updates the number of items in cart
+    var cart = document.querySelector("#cart");
+    cart.innerHTML = orders.length;
+
     localStorage.setItem('orders', JSON.stringify(orders));
     localStorage.setItem('total', total);
     littleCaesarsShoppingCart();

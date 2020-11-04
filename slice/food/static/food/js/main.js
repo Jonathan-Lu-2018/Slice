@@ -23,7 +23,7 @@ if(orders === null || orders === undefined ){
 }
 
 // Checks the total cost
-if(total === null || total === undefined ){
+if(total === null || total === undefined){
     localStorage.setItem('total', 0);
     total = localStorage.getItem('total');
 }
