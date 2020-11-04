@@ -26,8 +26,9 @@ function addKfc(kfcId){
     var cart = document.querySelector("#cart");
     cart.innerHTML = orders.length;
 
+    removeButton = '<button class="del" onclick="removeKfc(' + cartSize + ')">X</button>';
     kfcTotal.innerHTML = 'Total: $' + total;
-    kfcCart.innerHTML += '<li>' + name + ': $' + price + '</li>';
+    kfcCart.innerHTML += '<li>' + name + ': $' + price + removeButton + '</li>';
 }
 
 // Stores Kfc items in shopping cart
@@ -37,11 +38,20 @@ function kfcShoppingCart(){
     var cartSize =  orders.length;
     kfcCart.innerHTML = '';
     for(let i=0; i<cartSize; i++){
-        kfcCart.innerHTML += '<li>'+ orders[i][0] + ': $' + orders[i][1] + '</li>';
+        removeButton = '<button class="del" onclick="removeKfc(' + i + ')">X</button>';
+        kfcCart.innerHTML += '<li>'+ orders[i][0] + ': $' + orders[i][1] + removeButton + '</li>';
     }
    kfcTotal.innerHTML = 'Total: $' + total;
 }
 
 kfcShoppingCart();
 
- 
+function removeKfc(n){
+    var orders = JSON.parse(localStorage.getItem('orders'));
+    var total = localStorage.getItem('total');
+    total = Number(total) - Number(orders[n][1]);
+    orders.splice(n,1);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.setItem('total', total);
+    kfcShoppingCart();
+}

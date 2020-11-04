@@ -26,8 +26,9 @@ function addInAndOut(inAndOutId){
     var cart = document.querySelector("#cart");
     cart.innerHTML = orders.length;
 
+    removeButton = '<button class="del" onclick="removeInAndOut(' + cartSize + ')">X</button>';
     inAndOutTotal.innerHTML = 'Total: $' + total;
-    inAndOutCart.innerHTML += '<li>' + name + ': $' + price + '</li>';
+    inAndOutCart.innerHTML += '<li>' + name + ': $' + price + removeButton + '</li>';
 }
 
 // Stores InAndOut items in shopping cart
@@ -37,11 +38,22 @@ function inAndOutShoppingCart(){
     var cartSize =  orders.length;
     inAndOutCart.innerHTML = '';
     for(let i=0; i<cartSize; i++){
-        inAndOutCart.innerHTML += '<li>'+ orders[i][0] + ': $' + orders[i][1] + '</li>';
+        removeButton = '<button class="del" onclick="removeInAndOut(' + i + ')">X</button>';
+        inAndOutCart.innerHTML += '<li>'+ orders[i][0] + ': $' + orders[i][1] + removeButton + '</li>';
     }
     inAndOutTotal.innerHTML = 'Total: $' + total;
 }
 
 inAndOutShoppingCart();
+
+function removeInAndOut(n){
+    var orders = JSON.parse(localStorage.getItem('orders'));
+    var total = localStorage.getItem('total');
+    total = Number(total) - Number(orders[n][1]);
+    orders.splice(n,1);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.setItem('total', total);
+    inAndOutShoppingCart();
+}
 
  

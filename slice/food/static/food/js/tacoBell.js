@@ -26,8 +26,9 @@ function addTacoBell(tacoBellId){
     var cart = document.querySelector("#cart");
     cart.innerHTML = orders.length;
 
+    removeButton = '<button class="del" onclick="removeTacoBell(' + cartSize + ')">X</button';
     tacoBellTotal.innerHTML = 'Total: $' + total;
-    tacoBellCart.innerHTML += '<li>' + name + ': $' + price + '</li>';
+    tacoBellCart.innerHTML += '<li>' + name + ': $' + price + removeButton + '</li>';
 }
 
 // Stores tacoBell items in shopping cart
@@ -37,11 +38,21 @@ function tacoBellShoppingCart(){
     var cartSize =  orders.length;
     tacoBellCart.innerHTML = '';
     for(let i=0; i<cartSize; i++){
-        tacoBellCart.innerHTML += '<li>'+ orders[i][0] + ': $' + orders[i][1] + '</li>';
+        removeButton = '<button class="del" onclick="removeTacoBell(' + i + ')">X</button>';
+        tacoBellCart.innerHTML += '<li>'+ orders[i][0] + ': $' + orders[i][1] + removeButton +'</li>';
     }
     tacoBellTotal.innerHTML = 'Total: $' + total;
 }
 
 tacoBellShoppingCart();
 
+function removeTacoBell(n){
+    var orders = JSON.parse(localStorage.getItem('orders'));
+    var total = localStorage.getItem('total');
+    total = Number(total) - Number(orders[n][1]);
+    orders.splice(n,1);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.setItem('total', total);
+    tacoBellShoppingCart();
+}
  

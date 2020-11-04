@@ -26,8 +26,9 @@ function addLittleCaesars(littleCaesarsId){
     var cart = document.querySelector("#cart");
     cart.innerHTML = orders.length;
 
+    removeButton = '<button class="del" onclick="removeLittleCaesars(' + cartSize + ')">X</button>';
     littleCaesarsTotal.innerHTML = 'Total: $' + total;
-    littleCaesarsCart.innerHTML += '<li>' + name + ': $' + price + '</li>';
+    littleCaesarsCart.innerHTML += '<li>' + name + ': $' + price + removeButton + '</li>';
 }
 
 // Stores littleCaesars items in shopping cart
@@ -37,11 +38,20 @@ function littleCaesarsShoppingCart(){
     var cartSize =  orders.length;
     littleCaesarsCart.innerHTML = '';
     for(let i=0; i<cartSize; i++){
-        littleCaesarsCart.innerHTML += '<li>'+ orders[i][0] + ': $' + orders[i][1] + '</li>';
+        removeButton = '<button class="del" onclick="removeLittleCaesars(' + i + ')">X</button>';
+        littleCaesarsCart.innerHTML += '<li>'+ orders[i][0] + ': $' + orders[i][1] + removeButton + '</li>';
     }
     littleCaesarsTotal.innerHTML = 'Total: $' + total;
 }
 
 littleCaesarsShoppingCart();
 
- 
+function removeLittleCaesars(n){
+    var orders = JSON.parse(localStorage.getItem('orders'));
+    var total = localStorage.getItem('total');
+    total = Number(total) - Number(orders[n][1]);
+    orders.splice(n,1);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.setItem('total', total);
+    littleCaesarsShoppingCart();
+}
