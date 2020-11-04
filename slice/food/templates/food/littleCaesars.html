@@ -1,5 +1,7 @@
 {% extends 'food/base.html' %}
 
+{% load static %}
+
 {% block title %} Little Caesars {% endblock %}
 
 {% block content %}
@@ -21,7 +23,7 @@
                             </label>
                         </div>
                         <div>
-                            <button class="btn-info mt-3">Add to cart</button>
+                            <button class="btn-info mt-3" onclick="addLittleCaesars('{{littleCaesars.id}}')">Add to cart</button>
                         </div>
                     </div>
                     {% endfor %}
@@ -29,11 +31,14 @@
             </div>
             <!--Shopping Cart-->
             <div class="col-md-4 orders">
-                <h2 class="text-center">Order List</h2>
-                <ul></ul>
-                <h4 class="text-right">Total: $0</h4>
+                <div class="bg-dark p-4 rounded text-light">
+                    <h2 class="text-center">Order List</h2>
+                    <ul id="littleCaesarsCart"></ul>
+                    <h4 class="text-right" id="littleCaesarsTotal">Total: $0</h4>
+                </div>
             </div>
         </div>
     </div>
+    <script src="{% static 'food/js/littleCaesars.js' %}"></script>
 
 {% endblock %}
