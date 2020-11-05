@@ -11,5 +11,7 @@ urlpatterns = [
     path('tacoBell', views.tacoBell, name='tacoBell'),
     path('order', views.order, name='order'),
     path('success', views.success, name='success'),
-    path('register', views.register, name='register')
+    path('register', views.register, name='register'),
+    path('login', views.logIn, name='login'),
+    path('logout', views.logOut, name='logout')
 ]

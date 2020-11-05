@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import InNOut, Kfc, LittleCaesars, TacoBell
 from .forms import NewUserForm
-
+from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
+from django.contrib import messages
 
 # Home Page View
 def index(request):
@@ -70,3 +70,21 @@ def register(request):
         form = NewUserForm()
         ctx['form'] = form
     return render(request, 'food/register.html', ctx)
+
+# Login page
+def logIn(request):
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.info(request, 'The login information is invalid')
+    ctx = {'active_link': 'login'}
+    return render(request, 'food/login.html', ctx)
+
+def logOut(request):
+    logout(request)
+    return redirect('index')

@@ -41,14 +41,33 @@
               </li>
           </ul>
           <ul class="navbar-nav ml-auto">
+              {% if user.is_authenticated %}
+              <li class="nav-item mt-2">
+                  <h5 class="text-light pt-2 pr-4">Welcome {{user.username}}</h5>
+              </li>
+              {% endif %}
+              
               <li class="nav-item mt-2">
                 <a href="{% url 'food:order' %}" class="nav-link {% if active_link == 'order' %} active {% endif%}">
                     <img src="https://img.icons8.com/color/30/000000/shopping-cart.png"/><span id="cart"></span>
                 </a>
               </li>
+
+              {% if user.is_authenticated %}
               <li class="nav-item">
-                <a href="" class="nav-link"><img class="bg-light ml-2 rounded-circle" src="https://img.icons8.com/windows/24/000000/user.png"/><br>Login</a>
+                <a href="{% url 'food:logout' %}" class="nav-link">
+                  <img class="bg-light ml-2 rounded-circle" src="https://img.icons8.com/windows/24/000000/user.png"/>
+                  <br>Logout
+                </a>
               </li>
+              {% else %}
+              <li class="nav-item">
+                <a href="{% url 'food:login' %}" class="nav-link {% if active_link == 'login' %} active {% endif%}">
+                  <img class="bg-light ml-2 rounded-circle" src="https://img.icons8.com/windows/24/000000/user.png"/>
+                  <br>Login
+                </a>
+              </li>
+              {% endif %}
           </ul>
       </div>
       </nav>
