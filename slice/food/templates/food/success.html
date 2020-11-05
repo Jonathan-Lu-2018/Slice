@@ -7,8 +7,13 @@
 {% block content %}
     <div class="container-fluid">
         <h2> We have received your order!</h2>
+        <h4>Transaction Number: {{orderNum}}</h4>
         <h4> You have ordered: </h4>
-        <h4> {{order}}</h4>
-        <h4> If you want to modify your order, please call us</h4>
+        {% for item in items %}
+        <h4>{{item.name}} ${{item.price}}</h4>
+        {% endfor %}
+        <h4>Total: $ {{bill}}</h4>
+        <h4>Your order will arrive in approximately 15 minutes</h4>
+        <h4> If you want to modify your order, please call us at (408) 924-1000</h4>
     </div>
 {% endblock %}

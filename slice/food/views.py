@@ -67,6 +67,7 @@ def order(request):
                             bill=float(request.session['bill']), 
                             note=request.session['note'])
             order.save()
+            request.session['orderNum'] = order.number
             for article in orders:
                 item = Item(
                     order = order,
@@ -79,8 +80,10 @@ def order(request):
 
 # Order Success Page
 def success(request):
-    order = request.session['order']
-    ctx = {'order': order}
+    orderNum = request.session['orderNum']
+    bill = request.session['bill']
+    items = Item.objects.filter(order__number=orderNum)
+    ctx = {'orderNum':orderNum, 'bill':bill, "items":items}
     return render(request, 'food/success.html', ctx)
 
 # Registration Page
