@@ -10,5 +10,6 @@ urlpatterns = [
     path('kfc', views.kfc, name='kfc'),
     path('tacoBell', views.tacoBell, name='tacoBell'),
     path('order', views.order, name='order'),
-    path('success', views.success, name='success')
+    path('success', views.success, name='success'),
+    path('register', views.register, name='register')
 ]
