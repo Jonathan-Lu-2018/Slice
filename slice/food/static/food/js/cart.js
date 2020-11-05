@@ -38,3 +38,26 @@ function removeItem(n){
     localStorage.setItem('total', total);
     shoppingCart();
 }
+
+var note = document.querySelector('#message');
+
+// Implementing Ajax
+function order(){
+    var msg = note.value;
+    var orders = localStorage.getItem('orders');
+
+    var ur = '/food/order';
+    var orderData = {};
+    orderData['orders'] = orders;
+    orderData['note'] = msg;
+    $.ajax({
+        url: ur,
+        type: "POST",
+        data: orderData,
+        success: function(data){
+            window.location.replace('success')
+            localStorage.setItem('orders', JSON.stringify([]));
+            localStorage.setItem('total', 0);
+        }
+    })
+}
