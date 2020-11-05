@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import InNOut, Kfc, LittleCaesars, TacoBell
+from .models import InNOut, Kfc, LittleCaesars, TacoBell, Order, Item
 from .forms import NewUserForm
 from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
+import random
+import json
+
+def randomOrderNumber(length):
+    sample = 'ABCDEFGH0123456789'
+    numberOrder = ''.join((random.choice(sample) for i in range(length)))
+    return numberOrder
 
 # Home Page View
 def index(request):
@@ -47,6 +54,26 @@ def order(request):
     if request.is_ajax():
         request.session['note'] = request.POST.get('note')
         request.session['order'] = request.POST.get('orders')
+        orders = json.loads(request.session['order'])
+        request.session['bill'] = request.POST.get('bill')
+        randomNum = randomOrderNumber(6)
+
+        while Order.objects.filter(number=randomNum).count() > 0:
+            randomNum = randomOrderNumber(6)
+
+        if request.user.is_authenticated:
+            order = Order(customer=request.user, 
+                            number=randomOrderNumber(6), 
+                            bill=float(request.session['bill']), 
+                            note=request.session['note'])
+            order.save()
+            for article in orders:
+                item = Item(
+                    order = order,
+                    name = article[0],
+                    price = float(article[1])
+                )
+                item.save()
     ctx = {'active_link': 'order'}
     return render(request, 'food/order.html', ctx)
 
