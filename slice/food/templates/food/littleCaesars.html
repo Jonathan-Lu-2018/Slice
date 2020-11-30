@@ -6,11 +6,11 @@
 
 {% block content %}
 
-    <div class="container-fluid">
+    <div class="container-fluid ceasers">
         <div class="row">
             <!--Menu-->
             <div class="col-md-8 text-center">
-                <h2 class="title"> Welcome to Little Caesars! </h2>
+                <h2 class="title"><img src="https://www.pngkey.com/png/full/188-1880030_little-caesars-pizza-logo-png.png" id="ceasersLogo"></h2>
                 <div class="row">
                     {% for littleCaesars in littleCaesarss %}
                     <div class="col-md-4 p-4">
@@ -30,8 +30,8 @@
                 </div>
             </div>
             <!--Shopping Cart-->
-            <div class="col-md-4 orders">
-                <div class="bg-dark p-4 rounded text-light">
+            <div class="col-md-4" id="ordersCeasers">
+                <div class="p-4 rounded text-dark">
                     <h2 class="text-center">Order List</h2>
                     <ul id="littleCaesarsCart"></ul>
                     <h4 class="text-right" id="littleCaesarsTotal">Total: $0</h4>
