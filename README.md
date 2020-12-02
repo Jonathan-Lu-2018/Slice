@@ -10,9 +10,9 @@ Superuser info to access the database (/admin)
 
 2) Install Python3 (We used Python 3.7.3) from https://www.python.org/downloads/
 
-3) Install Python Django 
+3) Install Python Django (We used Django 3.1)
 
-        $ pip3 install django 
+        $ pip3 install django==3.1
         
 4) Clone our Repository from github (with HTTPS):
 
@@ -22,3 +22,6 @@ Superuser info to access the database (/admin)
 
         $ cd [location of where dir is]/Slice/slice
         $ python3 manage.py runserver
+
+Created using:
+Python, Django, Javascript, SQLite, HTML/CSS, Bootstrap
