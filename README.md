@@ -23,5 +23,7 @@ Superuser info to access the database (/admin)
         $ cd [location of where dir is]/Slice/slice
         $ python3 manage.py runserver
 
+![](https://user-images.githubusercontent.com/60593060/100831905-8b413580-341b-11eb-8b2f-78cc878432ed.png)
+
 Created using:
 Python, Django, Javascript, SQLite, HTML/CSS, Bootstrap
